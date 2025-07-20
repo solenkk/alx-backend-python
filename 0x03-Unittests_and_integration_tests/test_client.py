@@ -1,5 +1,10 @@
+#!/usr/bin/env python3
+"""Unit and Integration tests for utils and client"""
+
 import unittest
-from unittest.mock import patch, PropertyMock
+from unittest.mock import patch, Mock, PropertyMock
+from parameterized import parameterized, parameterized_class
+from utils import access_nested_map, get_json, memoize
 from client import GithubOrgClient
 
 
