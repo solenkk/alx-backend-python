@@ -9,6 +9,7 @@ from client import GithubOrgClient
 
 
 class TestGithubOrgClient(unittest.TestCase):
+    """Unit tests for the GithubOrgClient class."""
     @patch("client.get_json", return_value=None)
     def test_org(self, mock_get_json):
         """Test that org method calls get_json with correct URL"""
