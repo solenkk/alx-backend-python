@@ -16,7 +16,6 @@ repos_payload = [
 expected_repos = ["repo1", "repo2"]
 apache2_repos = ["repo1"]
 
-
 class TestAccessNestedMap(unittest.TestCase):
     """Unit tests for access_nested_map function"""
 
@@ -37,7 +36,6 @@ class TestAccessNestedMap(unittest.TestCase):
             access_nested_map(nested_map, path)
         self.assertEqual(str(cm.exception), repr(path[-1]))
 
-
 class TestGetJson(unittest.TestCase):
     """Unit tests for get_json function"""
 
@@ -52,7 +50,6 @@ class TestGetJson(unittest.TestCase):
         result = get_json(test_url)
         mock_get.assert_called_once_with(test_url)
         self.assertEqual(result, test_payload)
-
 
 class TestMemoize(unittest.TestCase):
     """Unit test for memoize decorator"""
@@ -71,7 +68,6 @@ class TestMemoize(unittest.TestCase):
             self.assertEqual(obj.a_property, 42)
             self.assertEqual(obj.a_property, 42)
             mock_method.assert_called_once()
-
 
 class TestGithubOrgClient(unittest.TestCase):
     """Unit tests for GithubOrgClient"""
@@ -111,7 +107,6 @@ class TestGithubOrgClient(unittest.TestCase):
     ])
     def test_has_license(self, repo, license_key, expected):
         self.assertEqual(GithubOrgClient.has_license(repo, license_key), expected)
-
 
 @parameterized_class([
     {
@@ -156,7 +151,6 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
             client.public_repos(license="apache-2.0"),
             self.apache2_repos
         )
-
 
 if __name__ == '__main__':
     unittest.main()
