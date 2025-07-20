@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-"""Unit and Integration tests for utils and client"""
+"""Unit and Integration tests for utils and client."""
 
 import unittest
 from unittest.mock import patch, Mock, PropertyMock
 from parameterized import parameterized, parameterized_class
+
 from utils import access_nested_map, get_json, memoize
 from client import GithubOrgClient
 from fixtures import org_payload, repos_payload, expected_repos, apache2_repos
+
 
 class TestGithubOrgClient(unittest.TestCase):
     """Unit tests for the GithubOrgClient class."""
@@ -58,6 +60,7 @@ class TestGithubOrgClient(unittest.TestCase):
             "https://api.github.com/orgs/testorg/repos"
         )
 
+
 @parameterized_class([
     {
         "org_payload": org_payload,
@@ -104,6 +107,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
             client.public_repos(license="apache-2.0"),
             self.apache2_repos
         )
+
 
 if __name__ == "__main__":
     unittest.main()
