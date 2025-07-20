@@ -12,3 +12,9 @@ router.register(r'messages', MessageViewSet)
 urlpatterns = [
     path('', include(router.urls)),
 ]
+# messaging_app/urls.py
+from django.urls import path, include
+
+urlpatterns = [
+    path('api/', include('chats.urls')),  # Include the chats app URLs
+]
