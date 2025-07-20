@@ -29,7 +29,6 @@ class TestAccessNestedMap(unittest.TestCase):
         """Test access_nested_map returns expected value"""
         self.assertEqual(access_nested_map(nested_map, path), expected)
 
-    
     @parameterized.expand([
         ("missing1", {}, ("a",)),
         ("missing2", {"a": 1}, ("a", "b")),
@@ -94,7 +93,6 @@ class TestGithubOrgClient(unittest.TestCase):
             f"https://api.github.com/orgs/{org_name}"
         )
 
-    
     def test_public_repos_url(self):
         """Test that public repos URL returns expected value"""
         payload = {"repos_url": "https://api.github.com/orgs/testorg/repos"}
@@ -103,7 +101,6 @@ class TestGithubOrgClient(unittest.TestCase):
             client = GithubOrgClient("testorg")
             self.assertEqual(client._public_repos_url, payload["repos_url"])
 
-    
     @patch("client.get_json")
     @patch.object(GithubOrgClient, "_public_repos_url", new_callable=PropertyMock)
     def test_public_repos(self, mock_repos_url, mock_get_json):
@@ -119,7 +116,6 @@ class TestGithubOrgClient(unittest.TestCase):
             "https://api.github.com/orgs/testorg/repos"
         )
 
-    
     @parameterized.expand([
         ({"license": {"key": "my_license"}}, "my_license", True),
         ({"license": {"key": "other_license"}}, "my_license", False),
@@ -158,18 +154,15 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
 
         mock_get.side_effect = side_effect
 
-    
     @classmethod
     def tearDownClass(cls):
         cls.get_patcher.stop()
 
-    
     def test_public_repos(self):
         """Test that public_repos returns expected repos"""
         client = GithubOrgClient("testorg")
         self.assertEqual(client.public_repos(), self.expected_repos)
 
-    
     def test_public_repos_with_license(self):
         """Test public_repos with specific license"""
         client = GithubOrgClient("testorg")
