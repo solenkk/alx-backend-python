@@ -8,6 +8,11 @@ from utils import access_nested_map, get_json, memoize
 from client import GithubOrgClient
 
 
+@parameterized_class([
+    {"org_payload": {"repos_url": "https://api.github.com/orgs/testorg/repos"},
+     "repos_payload": [{"name": "repo1"}, {"name": "repo2"}],
+     "expected_repos": ["repo1", "repo2"]}
+])
 class TestGithubOrgClient(unittest.TestCase):
     """Unit tests for the GithubOrgClient class."""
     @patch("client.get_json", return_value=None)
