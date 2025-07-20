@@ -12,3 +12,4 @@ router.register(r'messages', MessageViewSet)
 urlpatterns = [
     path('', include(router.urls)),  # This line includes all the routes from the router
 ]
+["routers.DefaultRouter()"]
