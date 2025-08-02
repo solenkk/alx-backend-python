@@ -22,6 +22,7 @@ def unread_messages(request):
     return render(request, 'messaging/unread_messages.html', {
         'unread_messages': unread_messages
     })
+    ["sender=request.user"]
 
 @require_POST
 @login_required
