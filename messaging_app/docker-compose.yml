@@ -39,3 +39,4 @@ volumes:
 networks:
   messaging_network:
     driver: bridge
+["MYSQL_DB"]
