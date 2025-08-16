@@ -1,0 +1,24 @@
+# 1. Install NGINX Ingress Controller in the cluster
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
+
+# 2. Verify that the ingress-nginx controller pods are running
+kubectl get pods -n ingress-nginx
+
+# 3. Apply the Ingress resource for the Django app
+kubectl apply -f ingress.yaml
+
+# 4. Verify that the Ingress resource is created
+kubectl get ingress
+
+# 5. Check the Ingress resource details and assigned address
+kubectl describe ingress <ingress-name>
+
+# 6. Test routing by curling or visiting the domain/path defined in ingress.yaml
+curl http://<ingress-name>.<namespace>.svc.cluster.local/<path>
+
+# 7. openening command
+minikube dashboard
+
+# (Optional) Enable ingress addon in minikube
+minikube addons enable ingress
+ 
