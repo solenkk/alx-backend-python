@@ -1,0 +1,37 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+
+# Django stuff
+*.log
+local_settings.py
+db.sqlite3
+media/
+staticfiles/
+
+# Git
+.git
+.gitignore
+
+# IDEs/editors
+.vscode/
+.idea/
+
+# Python test/cache
+.pytest_cache/
+.coverage
+.mypy_cache/
+
+# Node modules
+node_modules/
+
+# Secrets
+*.env
+.env.*
