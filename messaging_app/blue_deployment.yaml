@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-blue
+  labels:
+    app: django
+    version: blue
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: django
+      version: blue
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: django
+        version: blue
+    spec:
+      containers:
+        - name: django
+          image: your-django-image:2.0   # <-- updated to 2.0
+          ports:
+            - containerPort: 8000
+          
