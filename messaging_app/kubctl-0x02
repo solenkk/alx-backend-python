@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Deploy blue version
+echo "Deploying Blue version..."
+kubectl apply -f blue_deployment.yaml
+kubectl apply -f kubeservice.yaml
+
+# Deploy green version
+echo "Deploying Green version..."
+kubectl apply -f green_deployment.yaml
+
+# Check logs for green deployment pods
+echo "Checking logs for Green pods..."
+GREEN_PODS=$(kubectl get pods -l app=django,version=green -o jsonpath="{.items[*].metadata.name}")
+for pod in $GREEN_PODS; do
+    echo "Logs for $pod:"
+    kubectl logs $pod
+done
+
+echo "Deployment complete. To switch traffic to green version, edit kubeservice.yaml and change selector version from 'blue' to 'green'."
