@@ -1,0 +1,25 @@
+#!/bin/bash
+# Script: kubctl-0x01
+# Description: Scale Django app to 3 replicas, verify pods, run load test, and monitor resource usage.
+
+set -e
+
+DEPLOYMENT_NAME="django-app"  # Replace with your actual deployment name
+SERVICE_NAME="django-service" # Replace if different
+NAMESPACE="default"           # Change if your app runs in a custom namespace
+TEST_URL="http://localhost:8000" # Replace with your app's exposed endpoint
+
+echo "📦 Scaling deployment '$DEPLOYMENT_NAME' to 3 replicas..."
+kubectl scale deployment "$DEPLOYMENT_NAME" --replicas=3 -n "$NAMESPACE"
+
+echo "⏳ Waiting for pods to be ready..."
+kubectl rollout status deployment "$DEPLOYMENT_NAME" -n "$NAMESPACE"
+
+echo "🔍 Listing pods..."
+kubectl get pods -n "$NAMESPACE" -o wide
+
+echo "💥 Performing load test with wrk..."
+wrk -t4 -c100 -d30s "$TEST_URL"
+
+echo "📊 Monitoring resource usage..."
+kubectl top pods -n "$NAMESPACE"
